@@ -1,0 +1,16 @@
+package com.ingrid.gerenciamentodemercado.repositories
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import com.ingrid.gerenciamentodemercado.model.Product
+
+@Dao
+interface ProductsDao {
+
+    @Query("SELECT * FROM product")
+    fun allProducts(): List<Product>
+
+    @Insert
+    fun addProduct(product: Product)
+}

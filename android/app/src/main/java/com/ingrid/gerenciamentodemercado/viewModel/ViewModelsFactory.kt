@@ -3,7 +3,7 @@ package com.ingrid.gerenciamentodemercado.viewModel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ingrid.gerenciamentodemercado.model.ProductsRepository
+import com.ingrid.gerenciamentodemercado.repositories.ProductsRepository
 
 class ViewModelsFactory(private val context: Context) : ViewModelProvider.Factory {
 

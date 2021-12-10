@@ -10,7 +10,7 @@ import com.ingrid.gerenciamentodemercado.viewModel.ViewModelsFactory
 
 class RegistryProductActivity : AppCompatActivity() {
     lateinit var binding: ActivityRegistryProductBinding
-    private val viewModel: ProductViewModel by viewModels{ViewModelsFactory(this)}
+    private val viewModel: ProductViewModel by viewModels { ViewModelsFactory(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,8 @@ class RegistryProductActivity : AppCompatActivity() {
         val brand = binding.etProductBrand.text.toString()
         val salePrice = binding.etProductSalePrice.text.toString().toDouble()
 
+        //TODO validate data
         val product = Product(name, description, brand, salePrice)
-        viewModel.registryProduct(product)
+        viewModel.addProduct(product)
     }
 }
