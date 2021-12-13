@@ -18,4 +18,8 @@ class ProductsRepository(context: Context) {
         return db.productsDAO().allProducts()
     }
 
+    fun containsProduct(name: String, brand: String): Boolean {
+        return db.productsDAO().containsProduct(name,brand)
+    }
+
 }

@@ -13,4 +13,7 @@ interface ProductsDao {
 
     @Insert
     fun addProduct(product: Product)
+
+    @Query("SELECT * FROM product WHERE name = :name COLLATE NOCASE AND brand = :brand COLLATE NOCASE")
+    fun containsProduct(name: String, brand: String): Boolean
 }

@@ -1,6 +1,7 @@
 package com.ingrid.gerenciamentodemercado.model
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity
@@ -11,6 +12,7 @@ data class Product(
     val brand: String,
     val salePrice: Double
 ) {
+    @Ignore
     constructor(
         name: String,
         description: String,
