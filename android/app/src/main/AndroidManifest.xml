@@ -13,7 +13,7 @@
             android:name=".activities.ListActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.RegistryLotActivity"
+            android:name=".activities.RegistryBatchActivity"
             android:exported="false" />
         <activity
             android:name=".activities.RegistryProductActivity"

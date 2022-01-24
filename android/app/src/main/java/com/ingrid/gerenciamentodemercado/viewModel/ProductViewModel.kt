@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ingrid.gerenciamentodemercado.model.Product
+import com.ingrid.gerenciamentodemercado.repositories.AddProductResult
 import com.ingrid.gerenciamentodemercado.repositories.ProductsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

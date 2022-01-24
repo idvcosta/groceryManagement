@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.ingrid.gerenciamentodemercado.databinding.ActivityRegistryProductBinding
 import com.ingrid.gerenciamentodemercado.model.Product
-import com.ingrid.gerenciamentodemercado.viewModel.AddProductResult
+import com.ingrid.gerenciamentodemercado.repositories.AddProductResult
 import com.ingrid.gerenciamentodemercado.viewModel.ProductViewModel
 import com.ingrid.gerenciamentodemercado.viewModel.ViewModelsFactory
 

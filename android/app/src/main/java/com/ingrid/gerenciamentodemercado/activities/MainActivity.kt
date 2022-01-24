@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btScreenRegistryLot.setOnClickListener {
-            val intent = Intent(this, RegistryLotActivity::class.java)
+            val intent = Intent(this, RegistryBatchActivity::class.java)
             startActivity(intent)
         }
 
