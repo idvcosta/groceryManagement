@@ -21,8 +21,6 @@ class ListActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initViewModel()
-
-
     }
 
     private fun initViewModel() {

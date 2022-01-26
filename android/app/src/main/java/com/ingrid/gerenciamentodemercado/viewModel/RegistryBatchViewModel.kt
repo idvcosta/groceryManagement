@@ -9,7 +9,7 @@ import com.ingrid.gerenciamentodemercado.repositories.ProductsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ListProductsViewModel(private val repository: ProductsRepository) : ViewModel() {
+class RegistryBatchViewModel(private val repository: ProductsRepository) : ViewModel(){
 
     private val mutableLoadProducts = MutableLiveData<List<Product>>()
     val loadProductsResult: LiveData<List<Product>> = mutableLoadProducts

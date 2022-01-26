@@ -1,94 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
-    tools:context=".activities.RegistryBatchActivity">
-
-
+    android:orientation="horizontal">
+<!--
     <TextView
-        android:id="@+id/tvTitleRegistryLot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp"
-        android:paddingBottom="30dp"
-        android:text="Cadastro de Lote"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text= "Cadastro de Lote"
+        android:textSize="18sp"
+        android:padding="10dp"/>-->
 
-    <!--    Campo de busca de produto -->
-    <EditText
-        android:id="@+id/etNameProductLot"
+    <FrameLayout
+        android:id="@+id/fragment_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        android:hint="Nome do produto"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitleRegistryLot" />
+        android:layout_height="match_parent" />
 
-    <EditText
-        android:id="@+id/etProductName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Número do lote"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etNameProductLot" />
-
-    <EditText
-        android:id="@+id/etDateSale"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="Data de compra"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etProductName" />
-
-    <EditText
-        android:id="@+id/etQtdProduct"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Quantidade de produtos no lote"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etDateSale" />
-
-    <EditText
-        android:id="@+id/etExpirationDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="Data de validade"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etQtdProduct" />
-
-
-    <EditText
-        android:id="@+id/etPurchaseSale"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Preço de venda"
-        android:inputType="numberDecimal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etExpirationDate" />
-
-    <Button
-        android:id="@+id/btRegistryProduct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CADASTRAR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPurchaseSale" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

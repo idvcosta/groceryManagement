@@ -15,6 +15,9 @@ class ViewModelsFactory(private val context: Context) : ViewModelProvider.Factor
         if (modelClass == ListProductsViewModel::class.java) {
             return ListProductsViewModel(ProductsRepository(context)) as T
         }
+        if (modelClass == RegistryBatchViewModel::class.java) {
+            return RegistryBatchViewModel(ProductsRepository(context)) as T
+        }
 
         throw IllegalStateException("Not Implemented for $modelClass")
     }
