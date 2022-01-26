@@ -7,13 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.ingrid.gerenciamentodemercado.databinding.ActivityRegistryProductBinding
 import com.ingrid.gerenciamentodemercado.model.Product
 import com.ingrid.gerenciamentodemercado.repositories.AddProductResult
-import com.ingrid.gerenciamentodemercado.viewModel.ProductViewModel
+import com.ingrid.gerenciamentodemercado.viewModel.RegistryProductViewModel
 import com.ingrid.gerenciamentodemercado.viewModel.ViewModelsFactory
 
 class RegistryProductActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityRegistryProductBinding
-    private val viewModel: ProductViewModel by viewModels { ViewModelsFactory(this) }
+    private val viewModel: RegistryProductViewModel by viewModels { ViewModelsFactory(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

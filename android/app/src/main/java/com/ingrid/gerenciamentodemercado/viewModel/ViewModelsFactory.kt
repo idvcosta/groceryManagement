@@ -9,6 +9,13 @@ class ViewModelsFactory(private val context: Context) : ViewModelProvider.Factor
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return ProductViewModel(ProductsRepository(context)) as T
+        if (modelClass == RegistryProductViewModel::class.java) {
+            return RegistryProductViewModel(ProductsRepository(context)) as T
+        }
+        if (modelClass == ListProductsViewModel::class.java) {
+            return ListProductsViewModel(ProductsRepository(context)) as T
+        }
+
+        throw IllegalStateException("Not Implemented for $modelClass")
     }
 }
