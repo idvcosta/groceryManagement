@@ -12,7 +12,12 @@ import kotlinx.coroutines.launch
 class RegistryBatchViewModel(private val repository: ProductsRepository) : ViewModel(){
 
     private val mutableLoadProducts = MutableLiveData<List<Product>>()
+    private val mutableSelectedProduct = MutableLiveData<Product>()
+    private val mutableChangeSelectProduct = MutableLiveData<Boolean>()
+
     val loadProductsResult: LiveData<List<Product>> = mutableLoadProducts
+    val selectedProduct: LiveData<Product> = mutableSelectedProduct
+    val changeSelectProduct: LiveData<Boolean> = mutableChangeSelectProduct
 
     init {
         loadProducts()
@@ -23,5 +28,13 @@ class RegistryBatchViewModel(private val repository: ProductsRepository) : ViewM
             val loadProductsResults = repository.allProducts()
             mutableLoadProducts.postValue(loadProductsResults)
         }
+    }
+
+    fun selectProduct(product: Product) {
+        mutableSelectedProduct.postValue(product)
+    }
+
+    fun requestNewProductSelection() {
+        mutableChangeSelectProduct.postValue(true)
     }
 }

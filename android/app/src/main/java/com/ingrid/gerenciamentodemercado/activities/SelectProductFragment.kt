@@ -47,11 +47,10 @@ class SelectProductFragment : Fragment() {
     }
 
     private fun updateProducts(products: List<Product>) {
-        binding.rvProducts.adapter = ProductsAdapter(products)
+        binding.rvProducts.adapter = ProductsAdapter(products, ::onProductSelected)
     }
 
-    companion object {
-
-
+    fun onProductSelected(product: Product) {
+        viewModel.selectProduct(product)
     }
 }

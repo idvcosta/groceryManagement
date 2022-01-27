@@ -7,14 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.fragment.app.activityViewModels
 import com.ingrid.gerenciamentodemercado.R
 import com.ingrid.gerenciamentodemercado.databinding.ActivityRegistryBatchBinding
 import com.ingrid.gerenciamentodemercado.databinding.FragmentBatchDataBinding
+import com.ingrid.gerenciamentodemercado.model.Product
+import com.ingrid.gerenciamentodemercado.viewModel.RegistryBatchViewModel
+import com.ingrid.gerenciamentodemercado.viewModel.ViewModelsFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
 class BatchDataFragment : Fragment() {
+
     lateinit var binding: FragmentBatchDataBinding
+    private val viewModel: RegistryBatchViewModel by activityViewModels {
+        ViewModelsFactory(requireContext())
+    }
 
     val purchaseDate: Calendar = Calendar.getInstance()
     val expirationDate: Calendar = Calendar.getInstance()
@@ -27,7 +35,7 @@ class BatchDataFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentBatchDataBinding.inflate(inflater,container,false)
+        binding = FragmentBatchDataBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -36,28 +44,45 @@ class BatchDataFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initBindings()
+        initViewModel()
     }
 
     private fun initBindings() {
         val purchaseDateListener = createDateSetListener(purchaseDate)
         updateLabel(binding.etDateSale, purchaseDate)
 
+        binding.etProductName.setOnClickListener {
+            viewModel.requestNewProductSelection()
+        }
+
         binding.etDateSale.setOnClickListener {
-            DatePickerDialog(requireContext(), purchaseDateListener,
+            DatePickerDialog(
+                requireContext(), purchaseDateListener,
                 purchaseDate.get(Calendar.YEAR),
                 purchaseDate.get(Calendar.MONTH),
-                purchaseDate.get(Calendar.DAY_OF_MONTH)).show()
+                purchaseDate.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
 
         val expirationDateListener = createDateSetListener(expirationDate)
         updateLabel(binding.etExpirationDate, expirationDate)
 
         binding.etExpirationDate.setOnClickListener {
-            DatePickerDialog(requireContext(), expirationDateListener,
+            DatePickerDialog(
+                requireContext(), expirationDateListener,
                 expirationDate.get(Calendar.YEAR),
                 expirationDate.get(Calendar.MONTH),
-                expirationDate.get(Calendar.DAY_OF_MONTH)).show()
+                expirationDate.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
+    }
+
+    private fun initViewModel() {
+        viewModel.selectedProduct.observe(this, ::updateProduct)
+    }
+
+    private fun updateProduct(product: Product) {
+        binding.etProductName.setText(product.name)
     }
 
     private fun createDateSetListener(date: Calendar): DatePickerDialog.OnDateSetListener {

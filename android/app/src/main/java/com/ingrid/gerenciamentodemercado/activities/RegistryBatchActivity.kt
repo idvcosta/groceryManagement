@@ -11,8 +11,10 @@ import com.ingrid.gerenciamentodemercado.viewModel.ViewModelsFactory
 
 class RegistryBatchActivity : AppCompatActivity() {
     lateinit var binding: ActivityRegistryBatchBinding
-    val viewModel: RegistryBatchViewModel by viewModels {ViewModelsFactory(this)}
+    private val viewModel: RegistryBatchViewModel by viewModels {ViewModelsFactory(this)}
 
+    private val selectProductFragment = SelectProductFragment()
+    private val batchDataFragment = BatchDataFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,16 +23,24 @@ class RegistryBatchActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_content, SelectProductFragment())
+            .replace(R.id.fragment_content, selectProductFragment)
             //.addToBackStack("selectProduct")
             .commit()
 
-//        viewModel.productSelectedSignal.observe(this){
-//            supportFragmentManager
-//                .beginTransaction()
-//                .replace(R.id.fragment_content, BatchDataFragment())
-//                .commit()
-//        }
+        viewModel.selectedProduct.observe(this){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_content, batchDataFragment)
+                .commit()
+        }
+
+        viewModel.changeSelectProduct.observe(this){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_content, selectProductFragment)
+                //.addToBackStack("selectProduct")
+                .commit()
+        }
     }
 
 }
