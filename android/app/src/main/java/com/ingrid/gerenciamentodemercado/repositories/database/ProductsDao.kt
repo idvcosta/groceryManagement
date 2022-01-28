@@ -1,4 +1,4 @@
-package com.ingrid.gerenciamentodemercado.repositories
+package com.ingrid.gerenciamentodemercado.repositories.database
 
 import androidx.room.Dao
 import androidx.room.Insert

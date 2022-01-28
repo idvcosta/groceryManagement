@@ -22,14 +22,20 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.btScreenProductsList.setOnClickListener {
+            val intent = Intent(this, ProductsListActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.btScreenRegistryLot.setOnClickListener {
             val intent = Intent(this, RegistryBatchActivity::class.java)
             startActivity(intent)
         }
 
-        binding.btScreenList.setOnClickListener {
-            val intent = Intent(this, ListActivity::class.java)
+        binding.btScreenBatchsList.setOnClickListener {
+            val intent = Intent(this, BatchListActivity::class.java)
             startActivity(intent)
         }
+
     }
 }

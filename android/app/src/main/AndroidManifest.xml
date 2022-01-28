@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GerenciamentoDeMercado">
         <activity
-            android:name=".activities.ListActivity"
+            android:name=".activities.ProductsListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.BatchListActivity"
             android:exported="false" />
         <activity
             android:name=".activities.RegistryBatchActivity"

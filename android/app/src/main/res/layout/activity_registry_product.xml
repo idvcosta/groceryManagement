@@ -57,13 +57,13 @@
         app:layout_constraintTop_toBottomOf="@+id/etProductBrand" />
 
     <Button
+        android:id="@+id/btRegistryProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CADASTRAR"
-        android:id="@+id/btRegistryProduct"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etProductSalePrice"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etProductSalePrice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@ import com.ingrid.gerenciamentodemercado.viewModel.ListProductsViewModel
 import com.ingrid.gerenciamentodemercado.viewModel.ViewModelsFactory
 import kotlin.reflect.KFunction0
 
-class ListActivity : AppCompatActivity() {
+class ProductsListActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityListBinding
     private val viewModel: ListProductsViewModel by viewModels { ViewModelsFactory(this) }
@@ -25,7 +25,6 @@ class ListActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         viewModel.loadProductsResult.observe(this, this::updateProducts)
-
     }
 
     private fun updateProducts(products: List<Product>) {

@@ -8,9 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.activityViewModels
-import com.ingrid.gerenciamentodemercado.R
-import com.ingrid.gerenciamentodemercado.databinding.ActivityRegistryBatchBinding
 import com.ingrid.gerenciamentodemercado.databinding.FragmentBatchDataBinding
+import com.ingrid.gerenciamentodemercado.model.Batch
 import com.ingrid.gerenciamentodemercado.model.Product
 import com.ingrid.gerenciamentodemercado.viewModel.RegistryBatchViewModel
 import com.ingrid.gerenciamentodemercado.viewModel.ViewModelsFactory
@@ -23,9 +22,10 @@ class BatchDataFragment : Fragment() {
     private val viewModel: RegistryBatchViewModel by activityViewModels {
         ViewModelsFactory(requireContext())
     }
+    private lateinit var batchProduct: Product
 
-    val purchaseDate: Calendar = Calendar.getInstance()
-    val expirationDate: Calendar = Calendar.getInstance()
+    private val purchaseDate: Calendar = Calendar.getInstance()
+    private val expirationDate: Calendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,15 +45,35 @@ class BatchDataFragment : Fragment() {
 
         initBindings()
         initViewModel()
+
+        binding.btRegistryBatch.setOnClickListener {
+            registryBatch()
+        }
+    }
+
+    private fun registryBatch() {
+        val batchNumber = binding.etBatchNumber.text.toString().toInt()
+        val dateSale = purchaseDate.time
+        val qtdProducts = binding.etQtdProduct.text.toString().toInt()
+        val dateExpiration = expirationDate.time
+        val purchaseSaleStr = binding.etPurchaseSale.text.toString()
+
+        val purchaseSale = purchaseSaleStr.toDouble()
+
+        batchProduct.id?.let { productId ->
+            val batch =
+                Batch(productId, batchNumber, dateSale, qtdProducts, dateExpiration, purchaseSale)
+
+            viewModel.addBatch(batch)
+        }
     }
 
     private fun initBindings() {
-        val purchaseDateListener = createDateSetListener(purchaseDate)
-        updateLabel(binding.etDateSale, purchaseDate)
-
         binding.etProductName.setOnClickListener {
             viewModel.requestNewProductSelection()
         }
+
+        val purchaseDateListener = createDateSetListener(purchaseDate, binding.etDateSale)
 
         binding.etDateSale.setOnClickListener {
             DatePickerDialog(
@@ -64,8 +84,7 @@ class BatchDataFragment : Fragment() {
             ).show()
         }
 
-        val expirationDateListener = createDateSetListener(expirationDate)
-        updateLabel(binding.etExpirationDate, expirationDate)
+        val expirationDateListener = createDateSetListener(expirationDate, binding.etExpirationDate)
 
         binding.etExpirationDate.setOnClickListener {
             DatePickerDialog(
@@ -77,25 +96,31 @@ class BatchDataFragment : Fragment() {
         }
     }
 
-    private fun initViewModel() {
-        viewModel.selectedProduct.observe(this, ::updateProduct)
-    }
-
-    private fun updateProduct(product: Product) {
-        binding.etProductName.setText(product.name)
-    }
-
-    private fun createDateSetListener(date: Calendar): DatePickerDialog.OnDateSetListener {
+    private fun createDateSetListener(
+        date: Calendar,
+        etDate: EditText
+    ): DatePickerDialog.OnDateSetListener {
         return DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
             date.set(Calendar.YEAR, year)
             date.set(Calendar.MONTH, monthOfYear)
             date.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+            updateLabel(etDate, date)
         }
     }
 
     private fun updateLabel(editText: EditText, date: Calendar) {
         val sdf = SimpleDateFormat("dd/MM/yyyy")
         editText.setText(sdf.format(date.getTime()))
+    }
+
+    private fun initViewModel() {
+        viewModel.selectedProduct.observe(this, ::updateProduct)
+    }
+
+    private fun updateProduct(product: Product) {
+        batchProduct = product
+        binding.etProductName.setText(product.name)
     }
 
     companion object {
