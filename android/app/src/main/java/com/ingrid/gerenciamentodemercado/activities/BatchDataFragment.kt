@@ -51,23 +51,6 @@ class BatchDataFragment : Fragment() {
         }
     }
 
-    private fun registryBatch() {
-        val batchNumber = binding.etBatchNumber.text.toString().toInt()
-        val dateSale = purchaseDate.time
-        val qtdProducts = binding.etQtdProduct.text.toString().toInt()
-        val dateExpiration = expirationDate.time
-        val purchaseSaleStr = binding.etPurchaseSale.text.toString()
-
-        val purchaseSale = purchaseSaleStr.toDouble()
-
-        batchProduct.id?.let { productId ->
-            val batch =
-                Batch(productId, batchNumber, dateSale, qtdProducts, dateExpiration, purchaseSale)
-
-            viewModel.addBatch(batch)
-        }
-    }
-
     private fun initBindings() {
         binding.etProductName.setOnClickListener {
             viewModel.requestNewProductSelection()
@@ -115,12 +98,29 @@ class BatchDataFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        viewModel.selectedProduct.observe(this, ::updateProduct)
+        viewModel.selectedProduct.observe(requireActivity(), ::updateProduct)
     }
 
     private fun updateProduct(product: Product) {
         batchProduct = product
         binding.etProductName.setText(product.name)
+    }
+
+    private fun registryBatch() {
+        val batchNumber = binding.etBatchNumber.text.toString().toInt()
+        val dateSale = purchaseDate.time
+        val qtdProducts = binding.etQtdProduct.text.toString().toInt()
+        val dateExpiration = expirationDate.time
+        val purchaseSaleStr = binding.etPurchaseSale.text.toString()
+
+        val purchaseSale = purchaseSaleStr.toDouble()
+
+        batchProduct.id?.let { productId ->
+            val batch =
+                Batch(productId, batchNumber, dateSale, qtdProducts, dateExpiration, purchaseSale)
+
+            viewModel.addBatch(batch)
+        }
     }
 
     companion object {

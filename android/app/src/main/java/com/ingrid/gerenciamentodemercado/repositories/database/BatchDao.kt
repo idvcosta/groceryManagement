@@ -13,4 +13,7 @@ interface BatchDao {
 
     @Query("SELECT * FROM batch")
     fun allBatch():List<Batch>
+
+    @Query("SELECT * FROM batch WHERE productId == :productId")
+    fun filterBatchByProducts(productId: Int): List<Batch>
 }

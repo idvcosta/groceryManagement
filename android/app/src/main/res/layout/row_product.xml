@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="15dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textSize="19sp"
+        android:padding="3dp"
+        android:textStyle="italic"
         tools:text="televisão 22'" />
 </FrameLayout>

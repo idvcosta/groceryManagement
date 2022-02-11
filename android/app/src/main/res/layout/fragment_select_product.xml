@@ -6,10 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".activities.SelectProductFragment">
 
+    <TextView
+        android:id="@+id/tvSelectProduct"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:text="Selecione um produto"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProducts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/row_product" />
 

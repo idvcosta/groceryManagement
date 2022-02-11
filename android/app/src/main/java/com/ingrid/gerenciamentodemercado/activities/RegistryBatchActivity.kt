@@ -11,7 +11,7 @@ import com.ingrid.gerenciamentodemercado.viewModel.ViewModelsFactory
 
 class RegistryBatchActivity : AppCompatActivity() {
     lateinit var binding: ActivityRegistryBatchBinding
-    private val viewModel: RegistryBatchViewModel by viewModels { ViewModelsFactory(this) }
+    val viewModel: RegistryBatchViewModel by viewModels { ViewModelsFactory(this) }
 
     private val selectProductFragment = SelectProductFragment()
     private val batchDataFragment = BatchDataFragment()
@@ -36,7 +36,6 @@ class RegistryBatchActivity : AppCompatActivity() {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_content, fragment)
-            //.addToBackStack("selectProduct")
             .commit()
     }
 

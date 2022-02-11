@@ -3,6 +3,7 @@ package com.ingrid.gerenciamentodemercado.repositories
 import android.content.Context
 import androidx.room.Room
 import com.ingrid.gerenciamentodemercado.model.Batch
+import com.ingrid.gerenciamentodemercado.model.Product
 import com.ingrid.gerenciamentodemercado.repositories.database.AppDatabase
 
 class BatchRepository(context: Context) {
@@ -19,6 +20,10 @@ class BatchRepository(context: Context) {
 
     fun addBatch(batch: Batch) {
         db.batchDAO().addBatch(batch)
+    }
+
+    fun allBatchProduct(product: Product): List<Batch> {
+        return db.batchDAO().filterBatchByProducts(product.id!!)
     }
 
 }

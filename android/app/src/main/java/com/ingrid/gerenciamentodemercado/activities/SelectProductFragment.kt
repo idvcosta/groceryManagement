@@ -6,18 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.ingrid.gerenciamentodemercado.R
 import com.ingrid.gerenciamentodemercado.adapters.ProductsAdapter
 import com.ingrid.gerenciamentodemercado.databinding.FragmentSelectProductBinding
 import com.ingrid.gerenciamentodemercado.model.Product
+import com.ingrid.gerenciamentodemercado.viewModel.AbstractBatchViewModel
 import com.ingrid.gerenciamentodemercado.viewModel.RegistryBatchViewModel
 import com.ingrid.gerenciamentodemercado.viewModel.ViewModelsFactory
-import kotlinx.coroutines.flow.combine
 
 class SelectProductFragment : Fragment() {
 
     private lateinit var binding: FragmentSelectProductBinding
-    private val viewModel: RegistryBatchViewModel by activityViewModels {
+    private val viewModel: AbstractBatchViewModel by activityViewModels {
         ViewModelsFactory(requireContext())
     }
 
@@ -42,7 +41,7 @@ class SelectProductFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        viewModel.loadProductsResult.observe(this, this::updateProducts)
+        viewModel.productsList.observe(requireActivity(), this::updateProducts)
 
     }
 
