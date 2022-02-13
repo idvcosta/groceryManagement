@@ -28,6 +28,7 @@ class ProductsListActivity : AppCompatActivity() {
     }
 
     private fun updateProducts(products: List<Product>) {
+        // TODO revisit this
         binding.rvProducts.adapter = ProductsAdapter(products)
     }
 }

@@ -33,11 +33,16 @@ class ListBatchViewModel(
 
     }
 
-    override fun selectProduct(product: Product){
+    override fun selectProduct(product: Product) {
         super.selectProduct(product)
         viewModelScope.launch(Dispatchers.IO) {
             val batchs = batchRepository.allBatchProduct(product)
             mutableBatchs.postValue(batchs)
         }
     }
+
+    fun selectBatch(batch: Batch) {
+        mutableSelectedBatch.postValue(batch)
+    }
+
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.ingrid.gerenciamentodemercado.R
 import com.ingrid.gerenciamentodemercado.adapters.BatchsAdapter
 import com.ingrid.gerenciamentodemercado.databinding.FragmentSelectBatchBinding
 import com.ingrid.gerenciamentodemercado.model.Batch
@@ -46,8 +47,6 @@ class SelectBatchFragment : Fragment() {
     private fun initViewModel() {
         viewModel.selectedProduct.observe(requireActivity(), ::updateProduct)
         viewModel.batchs.observe(requireActivity(), ::updateBatchs)
-
-        viewModel.selectedBatch
     }
 
     private fun updateProduct(product: Product) {
@@ -56,6 +55,11 @@ class SelectBatchFragment : Fragment() {
     }
 
     private fun updateBatchs(batchs: List<Batch>) {
-        binding.rvBatchs.adapter = BatchsAdapter(batchs)
+        binding.rvBatchs.adapter = BatchsAdapter(batchs, ::onBatchSelected)
     }
+
+    fun onBatchSelected(batch: Batch){
+        viewModel.selectBatch(batch)
+    }
+
 }

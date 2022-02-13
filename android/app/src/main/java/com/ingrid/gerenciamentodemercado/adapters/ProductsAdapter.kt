@@ -2,14 +2,14 @@ package com.ingrid.gerenciamentodemercado.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.util.Consumer
 import androidx.recyclerview.widget.RecyclerView
 import com.ingrid.gerenciamentodemercado.databinding.RowProductBinding
 import com.ingrid.gerenciamentodemercado.model.Product
 
-
 class ProductsAdapter(
     private val products: List<Product>,
-    private val selectProductCallback: ((product: Product) -> Unit)? = null
+    private val selectProductCallback: Consumer<Product>? = null
 ) :
     RecyclerView.Adapter<ProductsAdapter.ProductHolder>() {
 
@@ -23,7 +23,7 @@ class ProductsAdapter(
 
         productRow.root.setOnClickListener { view ->
             val product = view.tag as Product
-            selectProductCallback?.invoke(product)
+            selectProductCallback?.accept(product)
         }
 
         return ProductHolder(productRow)

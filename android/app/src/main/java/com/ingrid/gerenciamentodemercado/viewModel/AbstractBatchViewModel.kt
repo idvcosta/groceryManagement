@@ -33,6 +33,4 @@ abstract class AbstractBatchViewModel(
     open fun selectProduct(product: Product) {
         mutableSelectedProduct.postValue(product)
     }
-
-
 }
