@@ -18,7 +18,7 @@ class BatchListActivity : AppCompatActivity() {
 
     private val selectProductFragment = SelectProductFragment()
     private val selectBatchFragment = SelectBatchFragment()
-    val batchDetailsFragment = BatchDetailsFragment()
+    private val batchDetailsFragment = BatchDetailsFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
