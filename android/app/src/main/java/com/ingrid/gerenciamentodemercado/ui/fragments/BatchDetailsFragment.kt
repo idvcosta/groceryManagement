@@ -1,4 +1,4 @@
-package com.ingrid.gerenciamentodemercado.activities
+package com.ingrid.gerenciamentodemercado.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.ingrid.gerenciamentodemercado.R
 import com.ingrid.gerenciamentodemercado.databinding.FragmentBatchDetailsBinding
 import com.ingrid.gerenciamentodemercado.model.Batch
 import com.ingrid.gerenciamentodemercado.viewModel.ListBatchViewModel
@@ -40,11 +39,11 @@ class BatchDetailsFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        viewModel.selectedBatch.observe(requireActivity(), ::updateBatch)
+        viewModel.getSelectedBatch().observe(requireActivity(), ::updateBatch)
     }
 
     private fun updateBatch(batch: Batch){
-        val productName = viewModel.selectedProduct.value?.name
+        val productName = viewModel.getSelectedProduct().value?.name
 
         val batchNumberStr = batch.number.toString()
         val dateSaleStr = batch.saleDate.toString()

@@ -1,4 +1,4 @@
-package com.ingrid.gerenciamentodemercado.adapters
+package com.ingrid.gerenciamentodemercado.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,13 +8,19 @@ import com.ingrid.gerenciamentodemercado.databinding.RowBatchBinding
 import com.ingrid.gerenciamentodemercado.model.Batch
 
 class BatchsAdapter(
-    private val batchs: List<Batch>,
     private val selectBatchCallback: Consumer<Batch>? = null
 ) :
     RecyclerView.Adapter<BatchsAdapter.BatchHolder>() {
 
     class BatchHolder(val batchRow: RowBatchBinding) :
         RecyclerView.ViewHolder(batchRow.root)
+
+    private var batchs: List<Batch>? = null
+
+    fun updateBatchs(batchs: List<Batch>) {
+        this.batchs = batchs
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BatchHolder {
         val context = parent.context
@@ -30,14 +36,12 @@ class BatchsAdapter(
     }
 
     override fun onBindViewHolder(holder: BatchHolder, position: Int) {
-        val batch = batchs[position]
+        batchs?.let { batchs ->
+            val batch = batchs[position]
 
-        holder.batchRow.tvBatchItem.text = batch.number.toString()
-        holder.batchRow.root.tag = batch
+            holder.batchRow.tvBatchItem.text = batch.number.toString()
+            holder.batchRow.root.tag = batch
+        }
     }
-
-    override fun getItemCount(): Int {
-        return batchs.size
-    }
-
+    override fun getItemCount() = batchs?.size ?: 0
 }

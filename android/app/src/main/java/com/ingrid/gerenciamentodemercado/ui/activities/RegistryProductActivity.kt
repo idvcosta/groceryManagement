@@ -1,4 +1,4 @@
-package com.ingrid.gerenciamentodemercado.activities
+package com.ingrid.gerenciamentodemercado.ui.activities
 
 import android.os.Bundle
 import android.widget.Toast
@@ -21,14 +21,17 @@ class RegistryProductActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initViewModel()
+        initViews()
+    }
 
+    private fun initViews() {
         binding.btRegistryProduct.setOnClickListener {
             registryProduct()
         }
     }
 
     private fun initViewModel() {
-        viewModel.addProductResult.observe(this) {
+        viewModel.getAddProductResult().observe(this) {
             if (it == AddProductResult.SUCESS) {
                 clearFields()
                 Toast.makeText(this, "Produto cadastrado!", Toast.LENGTH_SHORT).show()

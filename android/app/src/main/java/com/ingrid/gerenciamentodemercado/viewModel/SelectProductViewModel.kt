@@ -13,24 +13,24 @@ abstract class SelectProductViewModel(
     private val productRepository: ProductsRepository
 ) : ViewModel() {
 
-    private val mutableListProducts = MutableLiveData<List<Product>>()
-    private val mutableSelectedProduct = MutableLiveData<Product>()
-
-    val productsList: LiveData<List<Product>> = mutableListProducts
-    val selectedProduct: LiveData<Product> = mutableSelectedProduct
+    private val productsList = MutableLiveData<List<Product>>()
+    private val selectedProduct = MutableLiveData<Product>()
 
     init {
         loadProducts()
     }
 
+    fun getProductsList(): LiveData<List<Product>> = productsList
+    fun getSelectedProduct(): LiveData<Product> = selectedProduct
+
     private fun loadProducts() {
         viewModelScope.launch(Dispatchers.IO) {
             val loadProductsResults = productRepository.allProducts()
-            mutableListProducts.postValue(loadProductsResults)
+            productsList.postValue(loadProductsResults)
         }
     }
 
     open fun selectProduct(product: Product) {
-        mutableSelectedProduct.postValue(product)
+        selectedProduct.postValue(product)
     }
 }

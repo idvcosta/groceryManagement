@@ -1,4 +1,4 @@
-package com.ingrid.gerenciamentodemercado.activities
+package com.ingrid.gerenciamentodemercado.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.ingrid.gerenciamentodemercado.R
-import com.ingrid.gerenciamentodemercado.adapters.BatchsAdapter
+import com.ingrid.gerenciamentodemercado.ui.adapters.BatchsAdapter
 import com.ingrid.gerenciamentodemercado.databinding.FragmentSelectBatchBinding
 import com.ingrid.gerenciamentodemercado.model.Batch
 import com.ingrid.gerenciamentodemercado.model.Product
@@ -24,9 +23,7 @@ class SelectBatchFragment : Fragment() {
         ViewModelsFactory(requireContext())
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val batchsAdapter = BatchsAdapter(::onBatchSelected)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +31,7 @@ class SelectBatchFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSelectBatchBinding.inflate(inflater, container, false)
+        binding.rvBatchs.adapter = batchsAdapter
 
         return binding.root
     }
@@ -45,8 +43,8 @@ class SelectBatchFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        viewModel.selectedProduct.observe(requireActivity(), ::updateProduct)
-        viewModel.batchs.observe(requireActivity(), ::updateBatchs)
+        viewModel.getSelectedProduct().observe(requireActivity(), ::updateProduct)
+        viewModel.getBatchs().observe(requireActivity(), ::updateBatchs)
     }
 
     private fun updateProduct(product: Product) {
@@ -55,10 +53,10 @@ class SelectBatchFragment : Fragment() {
     }
 
     private fun updateBatchs(batchs: List<Batch>) {
-        binding.rvBatchs.adapter = BatchsAdapter(batchs, ::onBatchSelected)
+        batchsAdapter.updateBatchs(batchs)
     }
 
-    fun onBatchSelected(batch: Batch){
+    private fun onBatchSelected(batch: Batch){
         viewModel.selectBatch(batch)
     }
 

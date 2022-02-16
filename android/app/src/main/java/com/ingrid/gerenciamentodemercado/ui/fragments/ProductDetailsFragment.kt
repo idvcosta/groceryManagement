@@ -1,4 +1,4 @@
-package com.ingrid.gerenciamentodemercado.activities
+package com.ingrid.gerenciamentodemercado.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -39,16 +39,16 @@ class ProductDetailsFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        viewModel.selectedProduct.observe(requireActivity(), ::updateProduct)
+        viewModel.getSelectedProduct().observe(requireActivity(), ::updateProduct)
     }
 
     private fun updateProduct(product: Product) {
         val priceStr = product.salePrice.toString()
 
-        binding.tvProductName.text = product.name
-        binding.tvProductDescription.text = product.description
-        binding.tvProductBrand.text = product.brand
-        binding.tvProductSalePrice.text = priceStr
+        binding.tvProductName.text = "Nome: ${product.name}"
+        binding.tvProductDescription.text = "Descrição: ${product.description}"
+        binding.tvProductBrand.text = "Marca: ${product.brand}"
+        binding.tvProductSalePrice.text = "Preço de venda: ${priceStr}"
 
     }
 

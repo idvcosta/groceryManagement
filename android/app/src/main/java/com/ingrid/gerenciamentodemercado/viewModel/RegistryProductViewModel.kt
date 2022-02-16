@@ -12,17 +12,18 @@ import kotlinx.coroutines.launch
 
 class RegistryProductViewModel(private val repository: ProductsRepository) : ViewModel() {
 
-    private val mutableAddProductResult = MutableLiveData<AddProductResult>()
-    val addProductResult: LiveData<AddProductResult> = mutableAddProductResult
+    private val addProductResult = MutableLiveData<AddProductResult>()
+
+    fun getAddProductResult(): LiveData<AddProductResult> = addProductResult
 
     fun addProduct(product: Product) {
         //Muda da main thread para a thread de IO
         viewModelScope.launch(Dispatchers.IO) {
             if (!repository.containsProduct(product.name, product.brand)) {
                 repository.addProduct(product)
-                mutableAddProductResult.postValue(AddProductResult.SUCESS)
+                addProductResult.postValue(AddProductResult.SUCESS)
             } else {
-                mutableAddProductResult.postValue(AddProductResult.REPEATED)
+                addProductResult.postValue(AddProductResult.REPEATED)
             }
         }
     }

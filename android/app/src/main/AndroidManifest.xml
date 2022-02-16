@@ -10,19 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GerenciamentoDeMercado">
         <activity
-            android:name=".activities.ProductsListActivity"
+            android:name=".ui.activities.ProductsListActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.BatchListActivity"
+            android:name=".ui.activities.BatchListActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.RegistryBatchActivity"
+            android:name=".ui.activities.RegistryBatchActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.RegistryProductActivity"
+            android:name=".ui.activities.RegistryProductActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -15,20 +15,20 @@ class ListBatchViewModel(
     productRepository: ProductsRepository
 ) : SelectProductViewModel(productRepository) {
 
-    private val mutableBatchs = MutableLiveData<List<Batch>>()
-    private val mutableSelectedBatch = MutableLiveData<Batch>()
-
-    val batchs: LiveData<List<Batch>> = mutableBatchs
-    val selectedBatch: LiveData<Batch> = mutableSelectedBatch
+    private val batchs = MutableLiveData<List<Batch>>()
+    private val selectedBatch = MutableLiveData<Batch>()
 
     init {
         loadBatchs()
     }
 
+    fun getBatchs(): LiveData<List<Batch>> = batchs
+    fun getSelectedBatch(): LiveData<Batch> = selectedBatch
+
     private fun loadBatchs() {
         viewModelScope.launch(Dispatchers.IO) {
             val loadBatchsResult = batchRepository.allBatchs()
-            mutableBatchs.postValue(loadBatchsResult)
+            batchs.postValue(loadBatchsResult)
         }
 
     }
@@ -37,12 +37,12 @@ class ListBatchViewModel(
         super.selectProduct(product)
         viewModelScope.launch(Dispatchers.IO) {
             val batchs = batchRepository.allBatchProduct(product)
-            mutableBatchs.postValue(batchs)
+            this@ListBatchViewModel.batchs.postValue(batchs)
         }
     }
 
     fun selectBatch(batch: Batch) {
-        mutableSelectedBatch.postValue(batch)
+        selectedBatch.postValue(batch)
     }
 
 }

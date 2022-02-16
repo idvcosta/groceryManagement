@@ -3,11 +3,11 @@ package com.ingrid.gerenciamentodemercado.viewModel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ingrid.gerenciamentodemercado.activities.BatchListActivity
-import com.ingrid.gerenciamentodemercado.activities.ProductsListActivity
-import com.ingrid.gerenciamentodemercado.activities.RegistryBatchActivity
 import com.ingrid.gerenciamentodemercado.repositories.BatchRepository
 import com.ingrid.gerenciamentodemercado.repositories.ProductsRepository
+import com.ingrid.gerenciamentodemercado.ui.activities.BatchListActivity
+import com.ingrid.gerenciamentodemercado.ui.activities.ProductsListActivity
+import com.ingrid.gerenciamentodemercado.ui.activities.RegistryBatchActivity
 
 class ViewModelsFactory(private val context: Context) : ViewModelProvider.Factory {
 

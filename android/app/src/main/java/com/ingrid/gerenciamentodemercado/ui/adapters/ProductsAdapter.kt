@@ -1,4 +1,4 @@
-package com.ingrid.gerenciamentodemercado.adapters
+package com.ingrid.gerenciamentodemercado.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

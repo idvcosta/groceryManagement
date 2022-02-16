@@ -10,17 +10,18 @@ import kotlinx.coroutines.launch
 
 class ListProductsViewModel(private val repository: ProductsRepository) : SelectProductViewModel(repository) {
 
-    private val mutableLoadProducts = MutableLiveData<List<Product>>()
-    val loadProductsResult: LiveData<List<Product>> = mutableLoadProducts
+    private val loadProducts = MutableLiveData<List<Product>>()
 
     init {
         loadProducts()
     }
 
+    fun getloadProductsResult(): LiveData<List<Product>> = loadProducts
+
     private fun loadProducts() {
         viewModelScope.launch(Dispatchers.IO) {
             val loadProductsResults = repository.allProducts()
-            mutableLoadProducts.postValue(loadProductsResults)
+            loadProducts.postValue(loadProductsResults)
         }
     }
 }

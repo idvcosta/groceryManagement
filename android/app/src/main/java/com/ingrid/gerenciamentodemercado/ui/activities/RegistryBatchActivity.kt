@@ -1,15 +1,14 @@
-package com.ingrid.gerenciamentodemercado.activities
+package com.ingrid.gerenciamentodemercado.ui.activities
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import com.ingrid.gerenciamentodemercado.R
 import com.ingrid.gerenciamentodemercado.databinding.ActivityRegistryBatchBinding
+import com.ingrid.gerenciamentodemercado.ui.fragments.BatchDataFragment
+import com.ingrid.gerenciamentodemercado.ui.fragments.SelectProductFragment
 import com.ingrid.gerenciamentodemercado.viewModel.RegistryBatchViewModel
 import com.ingrid.gerenciamentodemercado.viewModel.ViewModelsFactory
 
-class RegistryBatchActivity : AppCompatActivity() {
+class RegistryBatchActivity : BaseActivity() {
     lateinit var binding: ActivityRegistryBatchBinding
     val viewModel: RegistryBatchViewModel by viewModels { ViewModelsFactory(this) }
 
@@ -23,20 +22,16 @@ class RegistryBatchActivity : AppCompatActivity() {
 
         changeFragment(selectProductFragment)
 
-        viewModel.selectedProduct.observe(this) {
+        initViewModel()
+    }
+
+    private fun initViewModel() {
+        viewModel.getSelectedProduct().observe(this) {
             changeFragment(batchDataFragment)
         }
 
-        viewModel.changeSelectProduct.observe(this) {
+        viewModel.getChangeSelectProduct().observe(this) {
             changeFragment(selectProductFragment)
         }
     }
-
-    private fun changeFragment(fragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_content, fragment)
-            .commit()
-    }
-
 }

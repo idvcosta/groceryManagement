@@ -1,4 +1,4 @@
-package com.ingrid.gerenciamentodemercado.activities
+package com.ingrid.gerenciamentodemercado.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.ingrid.gerenciamentodemercado.adapters.ProductsAdapter
+import com.ingrid.gerenciamentodemercado.ui.adapters.ProductsAdapter
 import com.ingrid.gerenciamentodemercado.databinding.FragmentSelectProductBinding
 import com.ingrid.gerenciamentodemercado.model.Product
 import com.ingrid.gerenciamentodemercado.viewModel.SelectProductViewModel
@@ -37,7 +37,7 @@ class SelectProductFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        viewModel.productsList.observe(requireActivity(), this::updateProducts)
+        viewModel.getProductsList().observe(requireActivity(), this::updateProducts)
     }
 
     private fun updateProducts(products: List<Product>) {

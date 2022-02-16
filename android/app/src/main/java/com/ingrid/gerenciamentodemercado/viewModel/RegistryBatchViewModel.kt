@@ -14,12 +14,12 @@ class RegistryBatchViewModel(
     private val batchRepository: BatchRepository
 ) : SelectProductViewModel(productRepository) {
 
-    private val mutableChangeSelectProduct = MutableLiveData<Boolean>()
+    private val changeSelectProduct = MutableLiveData<Boolean>()
 
-    val changeSelectProduct: LiveData<Boolean> = mutableChangeSelectProduct
+    fun getChangeSelectProduct(): LiveData<Boolean> = changeSelectProduct
 
     fun requestNewProductSelection() {
-        mutableChangeSelectProduct.postValue(true)
+        changeSelectProduct.postValue(true)
     }
 
     fun addBatch(batch: Batch) {

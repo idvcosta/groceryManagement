@@ -1,4 +1,4 @@
-package com.ingrid.gerenciamentodemercado.activities
+package com.ingrid.gerenciamentodemercado.ui.fragments
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -93,12 +93,12 @@ class BatchDataFragment : Fragment() {
     }
 
     private fun updateLabel(editText: EditText, date: Calendar) {
-        val sdf = SimpleDateFormat("dd/MM/yyyy")
-        editText.setText(sdf.format(date.getTime()))
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+        editText.setText(dateFormat.format(date.time))
     }
 
     private fun initViewModel() {
-        viewModel.selectedProduct.observe(requireActivity(), ::updateProduct)
+        viewModel.getSelectedProduct().observe(requireActivity(), ::updateProduct)
     }
 
     private fun updateProduct(product: Product) {
@@ -121,13 +121,5 @@ class BatchDataFragment : Fragment() {
 
             viewModel.addBatch(batch)
         }
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            BatchDataFragment().apply {
-
-            }
     }
 }

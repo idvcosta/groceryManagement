@@ -1,4 +1,4 @@
-package com.ingrid.gerenciamentodemercado.activities
+package com.ingrid.gerenciamentodemercado.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +36,5 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, BatchListActivity::class.java)
             startActivity(intent)
         }
-
     }
 }
