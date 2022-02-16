@@ -1,10 +1,10 @@
 package com.ingrid.gerenciamentodemercado.viewModel
 
 import android.content.Context
-import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ingrid.gerenciamentodemercado.activities.BatchListActivity
+import com.ingrid.gerenciamentodemercado.activities.ProductsListActivity
 import com.ingrid.gerenciamentodemercado.activities.RegistryBatchActivity
 import com.ingrid.gerenciamentodemercado.repositories.BatchRepository
 import com.ingrid.gerenciamentodemercado.repositories.ProductsRepository
@@ -28,11 +28,17 @@ class ViewModelsFactory(private val context: Context) : ViewModelProvider.Factor
                 BatchRepository(context)
             ) as T
         }
-        if (modelClass == AbstractBatchViewModel::class.java) {
-            if (context is BatchListActivity) {
-                return context.viewModel as T
-            } else if (context is RegistryBatchActivity) {
-                return context.viewModel as T
+        if (modelClass == SelectProductViewModel::class.java) {
+            when (context) {
+                is BatchListActivity -> {
+                    return context.viewModel as T
+                }
+                is RegistryBatchActivity -> {
+                    return context.viewModel as T
+                }
+                is ProductsListActivity -> {
+                    return context.viewModel as T
+                }
             }
         }
 

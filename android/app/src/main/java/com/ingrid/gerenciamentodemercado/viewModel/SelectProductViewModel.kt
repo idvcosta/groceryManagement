@@ -9,7 +9,7 @@ import com.ingrid.gerenciamentodemercado.repositories.ProductsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-abstract class AbstractBatchViewModel(
+abstract class SelectProductViewModel(
     private val productRepository: ProductsRepository
 ) : ViewModel() {
 

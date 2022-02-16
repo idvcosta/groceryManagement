@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 class ListBatchViewModel(
     private val batchRepository: BatchRepository,
     productRepository: ProductsRepository
-) : AbstractBatchViewModel(productRepository) {
+) : SelectProductViewModel(productRepository) {
 
     private val mutableBatchs = MutableLiveData<List<Batch>>()
     private val mutableSelectedBatch = MutableLiveData<Batch>()
